@@ -1,0 +1,26 @@
+<div class="chart"></div>
+
+
+.chart div {
+  font: 20px sans-serif;
+  background-color: red;
+  text-align: right;
+  padding: 20px;
+  margin: 2px;
+  color: white;
+}
+
+
+window.onload = ready;
+function ready() {
+  var data = [6, 8, 15, 16, 23, 48];
+  var x = d3.scaleLinear()
+      .domain([0, d3.max(data)])
+      .range([0, 420]);
+  d3.select(".chart")
+    .selectAll("div")
+      .data(data)
+    .enter().append("div")
+      .style("width", function(d) { return x(d) + "px"; })
+      .text(function(d) { return d; });
+
